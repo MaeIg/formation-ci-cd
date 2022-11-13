@@ -1,0 +1,24 @@
+name: Deploy android app to appcenter
+
+on: workflow_dispatch
+
+jobs:
+  hard_deploy:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - uses: actions/setup-java@v3
+        with:
+          # react-native docs suggest zulu11
+          # See: https://reactnative.dev/docs/environment-setup
+          distribution: 'zulu'
+          java-version: '11'
+      - run: yarn install
+      - run: bundle exec fastlane android hard_deploy
