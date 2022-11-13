@@ -1,4 +1,4 @@
-package com.deployable.newarchitecture;
+package com.maelg.formation.deployable.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.deployable.BuildConfig;
-import com.deployable.newarchitecture.components.MainComponentsRegistry;
-import com.deployable.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.maelg.formation.deployable.BuildConfig;
+import com.maelg.formation.deployable.newarchitecture.components.MainComponentsRegistry;
+import com.maelg.formation.deployable.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

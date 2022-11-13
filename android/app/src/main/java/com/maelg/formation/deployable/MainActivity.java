@@ -1,4 +1,4 @@
-package com.deployable;
+package com.maelg.formation.deployable;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

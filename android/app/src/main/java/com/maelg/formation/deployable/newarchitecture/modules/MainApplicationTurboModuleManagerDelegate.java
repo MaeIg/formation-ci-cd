@@ -1,4 +1,4 @@
-package com.deployable.newarchitecture.modules;
+package com.maelg.formation.deployable.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;
