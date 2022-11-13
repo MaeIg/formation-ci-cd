@@ -13,26 +13,31 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
-default_platform(:android)
+fastlane_require 'dotenv'
+
+before_all do |lane, options|
+  # Load secrets that are not commited to git
+  Dotenv.load(".env.#{ENV['ENV']}.secret")
+end
 
 platform :android do
-  desc "Runs all the tests"
-  lane :test do
-    gradle(task: "test")
-  end
+  desc "Deploy a new version to App Center"
+  lane :hard_deploy do
+    gradle(
+      task: "clean assembleRelease",
+      project_dir: "android",
+    )
 
-  desc "Submit a new Beta Build to Crashlytics Beta"
-  lane :beta do
-    gradle(task: "clean assembleRelease")
-    crashlytics
-  
-    # sh "your_script.sh"
-    # You can also use other beta testing services here
-  end
+    appcenter_upload(
+      api_token: ENV["APPCENTER_API_TOKEN"],
+      owner_name: "maelg-bam.tech",
+      app_name: "Deployable-1",
+      file: ENV["APK_PATH"],
+    )
 
-  desc "Deploy a new version to the Google Play"
-  lane :deploy do
-    gradle(task: "clean assembleRelease")
-    upload_to_play_store
+    gradle(
+      task: "clean",
+      project_dir: "android",
+    )
   end
 end
