@@ -10,6 +10,7 @@
 
 import React, {type PropsWithChildren} from 'react';
 import {
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -18,6 +19,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import codePush from 'react-native-code-push';
 
 import {
   Colors,
@@ -78,6 +80,16 @@ const App = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+          <Section title="Update">
+            <Button
+              title="Check for updates"
+              onPress={() => {
+                codePush.sync({
+                  installMode: codePush.InstallMode.IMMEDIATE,
+                });
+              }}
+            />
+          </Section>
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
@@ -117,4 +129,6 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+const codePushOptions = {checkFrequency: codePush.CheckFrequency.MANUAL};
+
+export default codePush(codePushOptions)(App);
